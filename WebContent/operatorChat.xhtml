@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="resources/css/chat.css"/>
+		<h:outputScript library = "js" name = "websockets.js"  /> 
+		<meta charset="ISO-8859-1"/>
+		<title>Operator Chat</title>
+	</h:head>
+	
+	<body class="text-center">
+		<h2 class="form-signin-heading">Chat P2P - Operator Chat</h2>
+		<hr />
+		<h:form id="chatformlog" rendered="#{operator.logged}" prependId="false">
+		<h:inputHidden id="channelId" name="channelId" value="#{operator.operatorId}"/>
+		<h:inputHidden id="displayName" name="displayName" value="#{operator.login}"/>
+		<div class="container" id="operatorLeft">
+	  		<div class="row">
+	    		<div class="col-sm">
+	    			<h:form id="chatform" prependId="false">
+		    			<h:outputText class="left2" value = "History:" />
+		      			<h:inputTextarea value="#{opchat.history}" name="chatlog" id="chatlog" cols="80" rows="15" readonly="true"/>
+		      			<h:outputText class="left2" value = "Message:" /><br/>
+						<h:inputTextarea name="textbox" class="left2" id="textbox" cols="63" rows="2"/><br/>
+						<h:button class="btn btn-lg btn-primary btn-block"  value="Send" onclick="sendChatMessage(); return false;" />
+					</h:form>
+	   			 </div>
+	    			<div class="col-sm">
+	    			<h:outputText id="activeChats" value="Active chats:"  cols="10" rows="15"/><br/>
+	    				<h:form id="formchatlist" prependId="false">
+			      			<h:commandButton  style="display:none" id="refresh" action="#{opcontroller.refreshConversations()}">
+			      				<f:ajax render = "chatlist"/>
+			      			</h:commandButton>
+			      			
+			      			<h:panelGroup id="chatlist">
+				      			<ui:repeat value="#{opchat.conversations}" var="conv">
+				      				<br/>
+	  								<h:commandLink class="#{conv.conversationLinkStyle}" value="#{conv.user}" action="#{opcontroller.changeToConversation(conv)}">
+	  									<f:ajax render="formchatlist"/>
+	  									<f:ajax render="chatform"/>
+  										<f:ajax render="chatformlog"/>
+	  								</h:commandLink>
+								</ui:repeat>
+							</h:panelGroup>
+			      			
+	      				</h:form>
+	    			</div>
+	  		</div>
+		</div>
+		</h:form>
+		<h:panelGroup layout="block" rendered="#{!operator.logged}">
+	 		<h:link value="Please sign in" outcome="operatorLogin.xhtml"/>
+		</h:panelGroup>
+		
+	</body>
+</html>

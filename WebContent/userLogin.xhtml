@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="resources/css/userlogin.css"/>
+		<meta charset="ISO-8859-1"/>
+	</h:head>
+	
+	<body class="text-center">
+		<h2>P2P Chat - User</h2>
+
+		<h:form id="formuserlogin" class="form-signin">
+			<h:inputText class="form-control" id="firstName" p:placeholder="Username" type="text" value="#{user.name}">
+				<f:ajax event="keyup" render="submit"/>
+			</h:inputText>
+			
+			<div id="categories">
+				<div class="row">
+					<div class="col-sm">
+						<h:selectOneMenu class="form-control" id="categorydropdown" value="#{user.selectedCategory}">
+							<f:selectItems value="#{userLoginController.getCategories().toArray()}" var="i" itemValue="#{i}" itemLabel="#{i}"  /> 
+							<f:ajax event="change" reRender="subcategorydropdown" update="subcategorydropdown" render="subcategorydropdown"/>
+						</h:selectOneMenu>
+					</div>
+				</div>	
+				
+				<div class="row">
+					<div class="col-sm">
+					<h:selectOneMenu class="form-control" id="subcategorydropdown" value="#{user.selectedSubCategory}">
+						<f:selectItems value="#{userLoginController.getSubCategories(user.selectedCategory).toArray()}" var="i" itemValue="#{i}" itemLabel="#{i}"  /> 
+					</h:selectOneMenu>
+					</div>
+				</div>
+			</div>
+			
+			
+			<h:commandButton disabled="#{user.name == null || empty user.name}" id="submit" class="btn btn-lg btn-primary btn-block" value="Login" action="#{userLoginController.createConversation}"/>
+		</h:form>
+		<h:messages globalOnly="true" id="messages" class="alert alert-danger"/>
+	
+	</body>
+</html>

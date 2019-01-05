@@ -1,0 +1,25 @@
+.form-signin{
+	width: 20%;
+	margin: auto;
+	margin-top: 6%;
+}
+
+input{
+	margin-top:5%;
+}
+
+h2{
+	padding-top: 13%;
+}
+
+body{
+  background-color: #DCDCDC;
+}
+
+#formuserlogin{
+	margin-top: 2%;
+}
+
+#formuserlogin\:categorydropdown, #formuserlogin\:subcategorydropdown{
+	margin-top:2%;
+}

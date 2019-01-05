@@ -1,0 +1,52 @@
+body{
+  background-color: #DCDCDC;
+}
+
+.container{
+	width: 60%;
+	margin-top: 30px;
+}
+
+.left{
+	float: left;
+	margin-left: 13.5%;
+	font-weight: bold;
+}
+
+#smaller{
+	width: 74%;
+	margin-left: 13%;
+}
+
+.left2{
+	float: left;
+	font-weight: bold;
+}
+
+#right{
+	float:left;	
+	display: inline;
+}
+
+#smaller2{
+	width: 74.7%;
+}
+
+#textbox{
+	margin-top: 0px;
+}
+
+#userlist{
+	width: 106%;
+}
+
+#activeChats{
+	font-weight: bold;
+}
+
+
+.selectedChat {
+	font-weigth: bold;
+	background-color: black;
+	
+}

@@ -1,0 +1,14 @@
+body{
+  background-color: #DCDCDC;
+}
+
+.wrapper{
+  text-align: center;
+}
+
+.form-signin{
+	width: 30%;
+	margin: auto;
+	margin-top: 6%;
+	padding-bottom: 10px;
+}

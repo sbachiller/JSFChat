@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+    version="2.2">
+<navigation-rule>
+	<from-view-id>/operatorLogin.xhtml</from-view-id>
+	<navigation-case>
+		<from-action>#{operatorLoginController.verifyUser}</from-action>
+		<from-outcome>operatorChat</from-outcome>
+		<to-view-id>/operatorChat.xhtml</to-view-id>
+	</navigation-case>
+</navigation-rule>
+<navigation-rule>
+	<from-view-id>/userLogin.xhtml</from-view-id>
+	<navigation-case>
+		<from-action>#{userLoginController.createConversation}</from-action>
+		<from-outcome>userChat</from-outcome>
+		<to-view-id>/userChat.xhtml</to-view-id>
+	</navigation-case>
+</navigation-rule>
+<navigation-rule>
+	<from-view-id>/operatorChat.xhtml</from-view-id>
+	<navigation-case>
+		<from-action>#{operatorLoginController.logout}</from-action>
+		<from-outcome>index</from-outcome>
+		<to-view-id>/index.xhtml</to-view-id>
+	</navigation-case>
+</navigation-rule>
+</faces-config>
